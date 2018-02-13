@@ -4,6 +4,10 @@ var gl;
 
 var cubeRotation = 0.0;
 var scale = 0.25;
+var isMouseDown = false;
+var lastMouseX = null;
+var lastMouseY = null;
+
 
 const vsSource = `
     attribute vec4 aVertexPosition;
@@ -426,15 +430,26 @@ function scaleArray(array, scale){
 }
 
 function handleMouseDown(event) {
-    console.log("Mouse Down");
+    isMouseDown = true;
 }
 
 function handleMouseUp(event) {
-    console.log("Mouse UP");
+    isMouseDown = false;
+    lastMouseX = event.clientX;
+    lastMouseY = event.clientY;
 }
 
 function handleMouseMove(event) {
-    console.log("Mouse Move");
+    if (!isMouseDown ) {
+        return;
+    }
+
+    var mouseX = event.clientX;
+    var mouseY = event.clientY;
+    if( (mouseX > 0  && mouseX < gl.canvas.width) && (mouseY>0  && mouseY < gl.canvas.height)){
+        //Do somethings
+        console.log("Mx " + mouseX + " My " + mouseY);
+    }
 }
 
 function resize(gl) {
