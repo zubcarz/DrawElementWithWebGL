@@ -3,6 +3,7 @@
 var gl;
 
 var cubeRotation = 0.0;
+var scale = 0.25;
 
 const vsSource = `
     attribute vec4 aVertexPosition;
@@ -84,7 +85,7 @@ function initBuffers(gl) {
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     // Now create an array of positions for the cube.
 
-    const positions  = [
+    var positions  = [
 
         ///// Top Pyramid //////
         // Front face
@@ -176,6 +177,8 @@ function initBuffers(gl) {
 
     ];
 
+    positions = scaleArray(positions, scale);
+    console.log(positions);
 
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
 
@@ -365,6 +368,11 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
 
 function start() {
     var canvas = document.getElementById("glcanvas");
+    //Canvas events
+    canvas.onmousedown = handleMouseDown;
+    document.onmouseup = handleMouseUp;
+    document.onmousemove = handleMouseMove;
+
     gl = initWebGL(canvas);
     if (gl) {
         gl.clearColor(0.0, 0.0, 0.0, 1.0);                      // Establecer el color base en negro, totalmente opaco
@@ -402,6 +410,27 @@ function start() {
         requestAnimationFrame(render);
     }
     requestAnimationFrame(render);
+}
+
+function scaleArray(array, scale){
+    var count = 0;
+    array.forEach(function(element) {
+        array[count] = element * scale;
+        count++;
+    });
+    return array;
+}
+
+function handleMouseDown(event) {
+    console.log("Mouse Down");
+}
+
+function handleMouseUp(event) {
+    console.log("Mouse UP");
+}
+
+function handleMouseMove(event) {
+    console.log("Mouse Move");
 }
 
 //Program
