@@ -178,7 +178,6 @@ function initBuffers(gl) {
     ];
 
     positions = scaleArray(positions, scale);
-    console.log(positions);
 
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
 
@@ -368,6 +367,7 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
 
 function start() {
     var canvas = document.getElementById("glcanvas");
+
     //Canvas events
     canvas.onmousedown = handleMouseDown;
     document.onmouseup = handleMouseUp;
@@ -404,6 +404,10 @@ function start() {
     // Draw the scene repeatedly
     function render(now) {
         now *= 0.001;  // convert to seconds
+        resize(gl);
+        gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+
         const deltaTime = now - then;
         then = now;
         drawScene(gl, programInfo, buffers, deltaTime);
@@ -431,6 +435,22 @@ function handleMouseUp(event) {
 
 function handleMouseMove(event) {
     console.log("Mouse Move");
+}
+
+function resize(gl) {
+    var realToCSSPixels = window.devicePixelRatio;
+
+    var displayWidth  = Math.floor(gl.canvas.clientWidth  * realToCSSPixels);
+    var displayHeight = Math.floor(gl.canvas.clientHeight * realToCSSPixels);
+
+    // Check if the canvas is not the same size.
+    if (gl.canvas.width  !== displayWidth ||
+        gl.canvas.height !== displayHeight) {
+
+        // Make the canvas the same size
+        gl.canvas.width  = displayWidth;
+        gl.canvas.height = displayHeight;
+    }
 }
 
 //Program
