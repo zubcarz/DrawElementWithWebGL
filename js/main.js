@@ -7,6 +7,9 @@ var scale = 0.25;
 var isMouseDown = false;
 var xPosition = 0.0;
 var yPosition = 0.0;
+var angleView = 45;
+
+const positionZ = 6;
 
 
 //UI
@@ -16,6 +19,13 @@ var xNode = document.createTextNode("");
 var yNode = document.createTextNode("");
 xLabel.appendChild(xNode);
 yLabel.appendChild(yNode);
+
+var widthLabel = document.getElementById("width_canvas");
+var heightLabel = document.getElementById("height_canvas");
+var widthLabelNode = document.createTextNode("");
+var heightLabelNode = document.createTextNode("");
+widthLabel.appendChild(widthLabelNode);
+heightLabel.appendChild(heightLabelNode);
 
 const vsSource = `
     attribute vec4 aVertexPosition;
@@ -279,7 +289,7 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     // Create a perspective matrix, a special matrix .
-    const fieldOfView = 45 * Math.PI / 180;   // in radians
+    const fieldOfView = angleView * Math.PI / 180;   // in radians
     const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
     const zNear = 0.1;
     const zFar = 100.0;
@@ -298,7 +308,7 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
     // start drawing the square.
     mat4.translate(modelViewMatrix,     // destination matrix
         modelViewMatrix,     // matrix to translate
-        [xPosition,yPosition, -6.0]);  // amount to translate
+        [xPosition,yPosition, -positionZ]);  // amount to translate
 
     mat4.rotate(modelViewMatrix,  // destination matrix
         modelViewMatrix,  // matrix to rotate
@@ -417,6 +427,7 @@ function start() {
     function render(now) {
         now *= 0.001;  // convert to seconds
         resize(gl);
+        updateCanvasSize();
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
         gl.clear(gl.COLOR_BUFFER_BIT);
 
@@ -443,29 +454,20 @@ function handleMouseDown(event) {
 
 function handleMouseUp(event) {
     isMouseDown = false;
-    xPosition = (event.clientX / gl.canvas.width) - 0.5;
-    yPosition = (-event.clientY/ gl.canvas.height) + 0.5;
+    translateElement(event.clientX, event.clientY);
 }
 
 function handleMouseMove(event) {
     if (!isMouseDown ) {
         return;
     }
+    translateElement(event.clientX, event.clientY);
 
-    var mouseX = event.clientX;
-    var mouseY = event.clientY;
-    if( (mouseX > 0  && mouseX < gl.canvas.width) && (mouseY>0  && mouseY < gl.canvas.height)){
-        console.log("Mx " + mouseX + " My " + mouseY);
-        xPosition = event.clientX / gl.canvas.width;
-        yPosition = -event.clientY/ gl.canvas.height;
-        xPosition = (event.clientX / gl.canvas.width) - 0.5;
-        yPosition = (-event.clientY/ gl.canvas.height) + 0.5;
-    }
 }
 
 function resize(gl) {
-    var realToCSSPixels = window.devicePixelRatio;
 
+    var realToCSSPixels = window.devicePixelRatio;
     var displayWidth  = Math.floor(gl.canvas.clientWidth  * realToCSSPixels);
     var displayHeight = Math.floor(gl.canvas.clientHeight * realToCSSPixels);
 
@@ -476,7 +478,28 @@ function resize(gl) {
         // Make the canvas the same size
         gl.canvas.width  = displayWidth;
         gl.canvas.height = displayHeight;
+
+        translateElement(gl.canvas.width / 2, gl.canvas.height / 2);
     }
+}
+
+function translateElement(posX, posY ) {
+
+    if( (posX > 0  && posX < gl.canvas.width) && (posY>0  && posY  < gl.canvas.height)){
+
+        var correctionY = positionZ * Math.tan(angleView/2 * Math.PI/180);
+
+        xPosition =  (2  * (posX / gl.canvas.width ) - 1)  * 3.9;
+        yPosition =   (2 * (-posY / gl.canvas.height) + 1) * correctionY;
+
+        xNode.nodeValue = xPosition.toFixed(2);
+        yNode.nodeValue = yPosition.toFixed(2);
+    }
+}
+
+function updateCanvasSize() {
+    heightLabelNode.nodeValue = gl.canvas.height.toFixed(2);
+    widthLabelNode.nodeValue = gl.canvas.width.toFixed(2);
 }
 
 //Program
