@@ -7,9 +7,9 @@ var scale = 0.25;
 var isMouseDown = false;
 var xPosition = 0.0;
 var yPosition = 0.0;
-var angleView = 45;
 
-const positionZ = 6;
+var zPosition = 6;
+var angleView = 45;
 
 
 //UI
@@ -26,6 +26,17 @@ var widthLabelNode = document.createTextNode("");
 var heightLabelNode = document.createTextNode("");
 widthLabel.appendChild(widthLabelNode);
 heightLabel.appendChild(heightLabelNode);
+
+var zLabel = document.getElementById("z_position");
+var fieldOfViewLabel = document.getElementById("field_of_view");
+var zLabelNode = document.createTextNode("");
+var fieldOfViewLabelNode = document.createTextNode("");
+zLabel.appendChild(zLabelNode);
+fieldOfViewLabel.appendChild(fieldOfViewLabelNode);
+
+
+var zSlider = document.getElementById("z_range");
+var fSlider = document.getElementById("f_range");
 
 const vsSource = `
     attribute vec4 aVertexPosition;
@@ -308,7 +319,7 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
     // start drawing the square.
     mat4.translate(modelViewMatrix,     // destination matrix
         modelViewMatrix,     // matrix to translate
-        [xPosition,yPosition, -positionZ]);  // amount to translate
+        [xPosition,yPosition, -zPosition]);  // amount to translate
 
     mat4.rotate(modelViewMatrix,  // destination matrix
         modelViewMatrix,  // matrix to rotate
@@ -388,7 +399,7 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
 }
 
 function start() {
-    var canvas = document.getElementById("glcanvas");
+    var canvas = document.getElementById("canvas");
 
     //Canvas events
     canvas.onmousedown = handleMouseDown;
@@ -423,6 +434,10 @@ function start() {
     // Draw the scene
     var then = 0;
 
+    //put labels in UI
+    zLabelNode.nodeValue = zPosition.toFixed(2);
+    fieldOfViewLabelNode.nodeValue = angleView.toFixed(2);
+
     // Draw the scene repeatedly
     function render(now) {
         now *= 0.001;  // convert to seconds
@@ -433,6 +448,7 @@ function start() {
 
         const deltaTime = now - then;
         then = now;
+
         drawScene(gl, programInfo, buffers, deltaTime);
         requestAnimationFrame(render);
     }
@@ -454,7 +470,6 @@ function handleMouseDown(event) {
 
 function handleMouseUp(event) {
     isMouseDown = false;
-    translateElement(event.clientX, event.clientY);
 }
 
 function handleMouseMove(event) {
@@ -479,6 +494,7 @@ function resize(gl) {
         gl.canvas.width  = displayWidth;
         gl.canvas.height = displayHeight;
 
+        // Center translate
         translateElement(gl.canvas.width / 2, gl.canvas.height / 2);
     }
 }
@@ -487,7 +503,7 @@ function translateElement(posX, posY ) {
 
     if( (posX > 0  && posX < gl.canvas.width) && (posY>0  && posY  < gl.canvas.height)){
 
-        var correctionY = positionZ * Math.tan(angleView/2 * Math.PI/180);
+        var correctionY = zPosition * Math.tan(angleView/2 * Math.PI/180);
 
         xPosition =  (2  * (posX / gl.canvas.width ) - 1)  * 3.9;
         yPosition =   (2 * (-posY / gl.canvas.height) + 1) * correctionY;
@@ -500,6 +516,18 @@ function translateElement(posX, posY ) {
 function updateCanvasSize() {
     heightLabelNode.nodeValue = gl.canvas.height.toFixed(2);
     widthLabelNode.nodeValue = gl.canvas.width.toFixed(2);
+}
+
+fSlider.oninput = function() {
+    angleView = this.value;
+    fieldOfViewLabelNode.nodeValue = this.value;
+    translateElement(gl.canvas.width / 2, gl.canvas.height / 2);
+}
+
+zSlider.oninput = function() {
+    zPosition = this.value;
+    zLabelNode.nodeValue = this.value;
+    translateElement(gl.canvas.width / 2, gl.canvas.height / 2);
 }
 
 //Program
