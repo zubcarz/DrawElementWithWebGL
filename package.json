@@ -1,0 +1,35 @@
+{
+  "name": "picadent-api",
+  "version": "1.0.0",
+  "description": "Services api picadent",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/zubcarz/picadent-backend"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "autenticate",
+    "heroku"
+  ],
+  "author": "zubcarz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://bitbucket.org/zubcarz/picadent-backend/issues"
+  },
+  "homepage": "https://bitbucket.org/zubcarz/picadent-backend#readme",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "body-parser": "^1.18.2",
+    "consolidate": "^0.14.5",
+    "express": "^4.15.3",
+    "node-persist": "^2.1.0",
+    "randomstring": "^1.1.5",
+    "validator": "^8.0.0"
+  }
+}
