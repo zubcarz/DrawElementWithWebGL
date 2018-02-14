@@ -5,9 +5,17 @@ var gl;
 var cubeRotation = 0.0;
 var scale = 0.25;
 var isMouseDown = false;
-var lastMouseX = null;
-var lastMouseY = null;
+var xPosition = 0.0;
+var yPosition = 0.0;
 
+
+//UI
+var xLabel = document.getElementById("x_position");
+var yLabel = document.getElementById("y_position");
+var xNode = document.createTextNode("");
+var yNode = document.createTextNode("");
+xLabel.appendChild(xNode);
+yLabel.appendChild(yNode);
 
 const vsSource = `
     attribute vec4 aVertexPosition;
@@ -290,7 +298,7 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
     // start drawing the square.
     mat4.translate(modelViewMatrix,     // destination matrix
         modelViewMatrix,     // matrix to translate
-        [-0.0, 0.0, -6.0]);  // amount to translate
+        [xPosition,yPosition, -6.0]);  // amount to translate
 
     mat4.rotate(modelViewMatrix,  // destination matrix
         modelViewMatrix,  // matrix to rotate
@@ -435,8 +443,8 @@ function handleMouseDown(event) {
 
 function handleMouseUp(event) {
     isMouseDown = false;
-    lastMouseX = event.clientX;
-    lastMouseY = event.clientY;
+    xPosition = (event.clientX / gl.canvas.width) - 0.5;
+    yPosition = (-event.clientY/ gl.canvas.height) + 0.5;
 }
 
 function handleMouseMove(event) {
@@ -447,8 +455,11 @@ function handleMouseMove(event) {
     var mouseX = event.clientX;
     var mouseY = event.clientY;
     if( (mouseX > 0  && mouseX < gl.canvas.width) && (mouseY>0  && mouseY < gl.canvas.height)){
-        //Do somethings
         console.log("Mx " + mouseX + " My " + mouseY);
+        xPosition = event.clientX / gl.canvas.width;
+        yPosition = -event.clientY/ gl.canvas.height;
+        xPosition = (event.clientX / gl.canvas.width) - 0.5;
+        yPosition = (-event.clientY/ gl.canvas.height) + 0.5;
     }
 }
 
