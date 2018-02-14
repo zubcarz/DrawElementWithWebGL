@@ -504,8 +504,9 @@ function translateElement(posX, posY ) {
     if( (posX > 0  && posX < gl.canvas.width) && (posY>0  && posY  < gl.canvas.height)){
 
         var correctionY = zPosition * Math.tan(angleView/2 * Math.PI/180);
+        var correctionX = gl.canvas.width * correctionY / gl.canvas.height;
 
-        xPosition =  (2  * (posX / gl.canvas.width ) - 1)  * 3.9;
+        xPosition =  (2  * (posX / gl.canvas.width ) - 1)  * correctionX;
         yPosition =   (2 * (-posY / gl.canvas.height) + 1) * correctionY;
 
         xNode.nodeValue = xPosition.toFixed(2);

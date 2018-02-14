@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="feb56567-e306-49b2-9fea-6e0d4a953886" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/css/styles.css" afterPath="$PROJECT_DIR$/css/styles.css" />
-      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -34,8 +32,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="522" column="48" lean-forward="false" selection-start-line="522" selection-start-column="48" selection-end-line="522" selection-end-column="48" />
+            <state relative-caret-position="505">
+              <caret line="510" column="0" lean-forward="true" selection-start-line="510" selection-start-column="0" selection-end-line="510" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -65,7 +63,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>common</find>
       <find>./js/</find>
       <find>initBuffers</find>
       <find>attribute</find>
@@ -87,7 +84,6 @@
       <find>rota</find>
       <find>xPosition</find>
       <find>transla</find>
-      <find>45</find>
       <find>6</find>
       <find>tra</find>
       <find>draw</find>
@@ -95,6 +91,8 @@
       <find>canvas</find>
       <find>zLabel</find>
       <find>z_position</find>
+      <find>45</find>
+      <find>angleView</find>
     </findStrings>
     <replaceStrings>
       <replace>js/</replace>
@@ -123,7 +121,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="291" />
     <option name="y" value="87" />
     <option name="width" value="1400" />
@@ -204,15 +202,15 @@
       <workItem from="1517878294632" duration="7750000" />
       <workItem from="1517960397755" duration="3556000" />
       <workItem from="1518055202833" duration="468000" />
-      <workItem from="1518557647425" duration="17012000" />
+      <workItem from="1518557647425" duration="18085000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34978000" />
+    <option name="totallyTimeSpent" value="36051000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1860" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1860" height="1096" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25137213" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -473,8 +471,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="522" column="48" lean-forward="false" selection-start-line="522" selection-start-column="48" selection-end-line="522" selection-end-column="48" />
+        <state relative-caret-position="505">
+          <caret line="510" column="0" lean-forward="true" selection-start-line="510" selection-start-column="0" selection-end-line="510" selection-end-column="0" />
           <folding />
         </state>
       </provider>
