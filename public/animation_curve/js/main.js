@@ -8,7 +8,7 @@ var options = {
 
 var pointList = new List('points', options);
 var maxPoints = 13;
-var timeAnimation = 2;// seconds
+var timeAnimation = 0.1;// seconds
 var isPlayAnimation = false;
 var currentSegment = 0;
 var currentParameter = 0;
@@ -26,6 +26,7 @@ var yPosition = 0.0;
 var zPosition = 6;
 var angleView = 45;
 var bezierParameter = 0.0;
+var bezierPointsAnimation = 10;
 var referencesPoints  = [];
 
 //UI
@@ -46,16 +47,26 @@ heightLabel.appendChild(heightLabelNode);
 var zLabel = document.getElementById("z_position");
 var fieldOfViewLabel = document.getElementById("field_of_view");
 var bezierLabel = document.getElementById("bezier_point");
+var timeAnimationLabel = document.getElementById("time_animation");
+var bezierPointsLabel = document.getElementById("bezier_points_animation");
+
 var zLabelNode = document.createTextNode("");
 var fieldOfViewLabelNode = document.createTextNode("");
 var bezierLabelNode = document.createTextNode("");
+var timeAnimationNode = document.createTextNode("");
+var bezierPointsNode = document.createTextNode("");
+
 zLabel.appendChild(zLabelNode);
 fieldOfViewLabel.appendChild(fieldOfViewLabelNode);
 bezierLabel.appendChild(bezierLabelNode);
+timeAnimationLabel.appendChild(timeAnimationNode);
+bezierPointsLabel.appendChild(bezierPointsNode);
 
 var zSlider = document.getElementById("z_range");
 var fSlider = document.getElementById("f_range");
 var bezierSlider = document.getElementById("bezier_range");
+var timeSlider = document.getElementById("time_animation_range");
+var bezierPointsSlider = document.getElementById("bezier_points_range");
 
 const vsSource = `
     attribute vec4 aVertexPosition;
@@ -427,7 +438,7 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
                     yPosition = bezierPoint[1];
                 }
             }
-            currentParameter += 0.01;
+            currentParameter += 1/bezierPointsAnimation;
 
             if (currentParameter > 1) {
                 currentParameter = 0;
@@ -435,10 +446,7 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
             }
 
             if (currentSegment >= segments) {
-                currentSegment = 0;
-                currentParameter = 0;
-                isPlayAnimation = false;
-                console.log("end Animation");
+              stopAnimation();
             }
             elapseTime = 0;
         }else {
@@ -489,6 +497,8 @@ function start() {
     zLabelNode.nodeValue = zPosition.toFixed(2);
     fieldOfViewLabelNode.nodeValue = angleView.toFixed(2);
     bezierLabelNode.nodeValue = bezierParameter.toFixed(2);
+    timeAnimationNode.nodeValue = timeAnimation + "(s)";
+    bezierPointsNode.nodeValue = bezierPointsAnimation;
 
     // Draw the scene repeatedly
     function render(now) {
@@ -522,8 +532,6 @@ function handleMouseDown(event) {
     var rect = canvas.getBoundingClientRect();
     var x = event.clientX - rect.left;
     var y = event.clientY - rect.top;
-    console.log(x);
-    console.log(y);
     AddPoint(x, y);
 }
 
@@ -600,7 +608,6 @@ function AddPoint(x,y){
                 xCoordinate: wordPosition.x.toFixed(2),
                 yCoordinate: wordPosition.y.toFixed(2)
             });
-            console.log(referencesPoints.length);
         } else {
             referencesPoints.shift();
             clearPoints(false);
@@ -617,9 +624,21 @@ function AddPoint(x,y){
     }
 }
 
+function drawLines(){
+    if(referencesPoints.length > 2) {
+        for (var i = 0; i < referencesPoints.length -1 ; i++) {
+            dContext.beginPath();
+            dContext.strokeStyle="#234E61";
+            dContext.moveTo(referencesPoints[i][0], referencesPoints[i][1]);
+            dContext.lineTo(referencesPoints[i + 1][0], referencesPoints[i + 1][1]);
+            dContext.stroke();
+        }
+    }
+}
+
 function drawPoint(x,y){
     segments = getCountSegment();
-    dContext.fillStyle = "#d3d3d3"; // Red color
+    dContext.fillStyle = "#d3d3d3";
     dContext.beginPath();
     dContext.arc(x, y, pointSize, 0, Math.PI * 2, true);
     dContext.fill();
@@ -629,11 +648,17 @@ function drawPoint(x,y){
 function playAnimation() {
     if(referencesPoints.length >= 4 && isPlayAnimation == false){
         console.log("start animation");
-        var pointsTransition = segments *100;
+        var pointsTransition = segments * bezierPointsAnimation;
         deltaTimeAnimation = timeAnimation / pointsTransition;
-        console.log("Time Transition- >" + deltaTimeAnimation);
         isPlayAnimation = true;
     }
+}
+
+function stopAnimation(){
+    currentSegment = 0;
+    currentParameter = 0;
+    isPlayAnimation = false;
+    console.log("end Animation");
 }
 
 function getBezierCube(vectorList , parameter){
@@ -725,11 +750,16 @@ bezierSlider.oninput = function() {
 
 };
 
-function clearFields() {
-    xCoordinateLabel.val('');
-    yCoordinateLabel.val('');
-    pointName.val('');
-}
+timeSlider.oninput = function() {
+    timeAnimation = this.value * 0.599 + 0.1    ;
+    timeAnimationNode.nodeValue = timeAnimation.toFixed(2) + "(s)";
+};
+
+bezierPointsSlider.oninput = function() {
+    bezierPointsAnimation = this.value ;
+    bezierPointsNode.nodeValue = bezierPointsAnimation;
+};
+
 
 //Program
 start();

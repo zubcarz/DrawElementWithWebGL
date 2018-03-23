@@ -19,12 +19,17 @@
     </canvas>
 
     <div id="overlay2">
+        <h3> Bezier Cubic</h3>
         <div> Z Position: <span id="z_position"></span><input type="range" min="2" max="20" value="6" class="slider" id="z_range"></div>
         <div> Field of view: <span id="field_of_view"></span><input type="range" min="20" max="120" value="45" class="slider" id="f_range"></div>
-        <div> Test Bezier Parameter : <span id="bezier_point"></span><input type="range" min="0" max="100" value="0" class="slider" id="bezier_range"></div>
+        <div> Bezier Parameter : <span id="bezier_point"></span><input type="range" min="0" max="100" value="0" class="slider" id="bezier_range"></div>
+        <div> Time Animation (s) : <span id="time_animation"></span><input type="range" min="0" max="100" value="0" class="slider" id="time_animation_range"></div>
+        <div> Bezier Points Animation : <span id="bezier_points_animation"></span><input type="range" min="10" max="250" value="0" class="slider" id="bezier_points_range"></div>
         <br>
         <button onclick="playAnimation()">Play Animation</button>
         <button onclick="clearPoints(true)">Reset Points</button>
+        <button onclick="stopAnimation()">Stop Animation</button>
+        <button onclick="drawLines()">Draw Lines</button>
         <p> Add points by clicking with the mouse Add 13 points</p>
         <p> Please Add min to 4 points</p>
         <div id="points">
