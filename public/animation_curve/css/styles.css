@@ -1,7 +1,13 @@
 body {
     margin: 0;
     background-color: white;
+    font-family:sans-serif;
 }
+
+table td, table th {
+    padding:5px;
+}
+
 #canvas {
     display: block;  /* prevents scrollbar */
     width: 100vw;

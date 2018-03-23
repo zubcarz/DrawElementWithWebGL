@@ -2,6 +2,11 @@
 
 var gl;
 var dContext;
+var options = {
+    valueNames: [ 'PointName', 'xCoordinate', 'yCoordinate' ]
+};
+
+var pointList = new List('points', options);
 
 var cubeRotation = 0.0;
 var scale = 0.25;
@@ -485,7 +490,6 @@ function handleMouseDown(event) {
 }
 
 function handleMouseUp(event) {
-    console.log("up action");
     isMouseDown = false;
 }
 
@@ -544,21 +548,40 @@ function clearPoints() {
 }
 
 function AddPoint(x,y){
+    var wordPosition = canvasToWord(x,y);
+    if(x != null && y != null && wordPosition.x != null && wordPosition.y != null) {
+        if (referencesPoints.length < 16) {
+            referencesPoints.push([x, y, wordPosition.x, wordPosition.y]);
+            drawPoint(x, y);
+            pointList.add({
+                PointName:  "Point " + referencesPoints.length ,
+                xCoordinate: wordPosition.x.toFixed(2),
+                yCoordinate: wordPosition.y.toFixed(2)
+            });
+            console.log(referencesPoints.length);
+        } else {
+            referencesPoints.shift();
+            pointList.remove();
+            clearPoints();
+            referencesPoints.push([x, y, wordPosition.x, wordPosition.y]);
+            for (var i = 0; i < referencesPoints.length; i++) {
+                drawPoint(referencesPoints[i][0], referencesPoints[i][1]);
+                pointList.add({
+                    PointName:  "Point " + i ,
+                    xCoordinate: referencesPoints[i][2].toFixed(2),
+                    yCoordinate: referencesPoints[i][3].toFixed(2)
+                });
+            }
+        }
+    }
+}
+
+function drawPoint(x,y){
     dContext.fillStyle = "#d3d3d3"; // Red color
     dContext.beginPath();
     dContext.arc(x, y, pointSize, 0, Math.PI * 2, true);
     dContext.fill();
-
-    var wordPosition = canvasToWord(x,y);
-    if(referencesPoints.length < 16) {
-        referencesPoints.push([wordPosition.x, wordPosition.y]);
-        console.log(referencesPoints.length);
-    }else{
-        referencesPoints.shift();
-        referencesPoints.push([wordPosition.x, wordPosition.y]);
-        console.log(referencesPoints.length);
-    }
-}   
+}
 
 //parameter between 0 and 1
 function playAnimation() {
@@ -581,16 +604,16 @@ function getBezierCube(vectorList , parameter){
     parameterCubed = parameterSquared * parameter;
 
     /* cálculo de los coeficientes polinomiales */
-    cx = 3.0 * (vectorList[1][0] - vectorList[0][0]);
-    bx = 3.0 * (vectorList[2][0] - vectorList[1][0]) - cx;
-    ax = vectorList[3][0] - vectorList[0][0] - cx - bx;
+    cx = 3.0 * (vectorList[1][2] - vectorList[0][2]);
+    bx = 3.0 * (vectorList[2][2] - vectorList[1][2]) - cx;
+    ax = vectorList[3][2] - vectorList[0][2] - cx - bx;
 
-    cy = 3.0 * (vectorList[1][1] - vectorList[0][1]);
-    by = 3.0 * (vectorList[2][1] - vectorList[1][1]) - cy;
-    ay = vectorList[3][1] - vectorList[0][1] - cy - by;
+    cy = 3.0 * (vectorList[1][3] - vectorList[0][3]);
+    by = 3.0 * (vectorList[2][3] - vectorList[1][3]) - cy;
+    ay = vectorList[3][3] - vectorList[0][3] - cy - by;
 
-    result[0] = (ax * parameterCubed) + (bx * parameterSquared) + (cx * parameter) + vectorList[0][0];
-    result[1] = (ay * parameterCubed) + (by * parameterSquared) + (cy * parameter) + vectorList[0][1];
+    result[0] = (ax * parameterCubed) + (bx * parameterSquared) + (cx * parameter) + vectorList[0][2];
+    result[1] = (ay * parameterCubed) + (by * parameterSquared) + (cy * parameter) + vectorList[0][3];
     return result;
 }
 
@@ -616,21 +639,20 @@ zSlider.oninput = function() {
 };
 
 bezierSlider.oninput = function() {
-    var pointOne = [-3.42, -0.6, zPosition];
-    var pointTwo = [-2.17, 1.45, zPosition];
-    var pointThird = [1.27, 1.65, zPosition];
-    var pointFour = [1.54, -0.57, zPosition];
-
-
     bezierParameter = this.value/100;
     bezierLabelNode.nodeValue = bezierParameter.toFixed(2);
-    var vectorList = [pointOne, pointTwo, pointThird, pointFour];
+    var vectorList = [referencesPoints[0],referencesPoints[1],referencesPoints[2],referencesPoints[3]];
     var bezierPoint = getBezierCube(vectorList,bezierParameter);
     console.log(bezierPoint);
     xPosition = bezierPoint[0];
     yPosition = bezierPoint[1];
-
 };
+
+function clearFields() {
+    xCoordinateLabel.val('');
+    yCoordinateLabel.val('');
+    pointName.val('');
+}
 
 //Program
 start();

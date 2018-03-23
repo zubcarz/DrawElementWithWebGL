@@ -6,6 +6,7 @@
         <meta name="Interactivity WebGL" content="The HTML5 Herald">
         <meta name="zubcarz@gmail.com" content="SitePoint">
         <link rel="stylesheet" href="css/styles.css?v=1.0">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
     </head>
     <body>
 
@@ -25,7 +26,17 @@
         <button onclick="playAnimation()">Play Animation</button>
         <button onclick="clearPoints()">Reset Points</button>
         <p> Add points by clicking with the mouse Add 16 points</p>
-
+        <div id="points">
+            <table>
+                <tbody class="list">
+                <tr>
+                    <td class="PointName">Count </td>
+                    <td class="xCoordinate">XCoordinate</td>
+                    <td class="yCoordinate">YCoordinate</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div id="overlay">
