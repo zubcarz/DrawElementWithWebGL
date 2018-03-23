@@ -7,6 +7,7 @@ var options = {
 };
 
 var pointList = new List('points', options);
+var maxPoints = 13;
 
 var cubeRotation = 0.0;
 var scale = 0.25;
@@ -550,7 +551,7 @@ function clearPoints() {
 function AddPoint(x,y){
     var wordPosition = canvasToWord(x,y);
     if(x != null && y != null && wordPosition.x != null && wordPosition.y != null) {
-        if (referencesPoints.length < 16) {
+        if (referencesPoints.length < maxPoints) {
             referencesPoints.push([x, y, wordPosition.x, wordPosition.y]);
             drawPoint(x, y);
             pointList.add({
@@ -639,13 +640,46 @@ zSlider.oninput = function() {
 };
 
 bezierSlider.oninput = function() {
-    bezierParameter = this.value/100;
+    var segments;
+    if( referencesPoints.length <= 4){
+        segments = 1;
+    }else{
+        segments =Math.floor( (referencesPoints.length - 4) /3) + 1;
+    }
+
+    console.log("Segments - > " + segments);
+
+    if(segments >= 1) {
+    var currentSegment = 0;
+
+        for (var i = 0; i < segments; i++) {
+            var start = bezierSlider.max / segments * [i];
+            var end = bezierSlider.max / segments +  bezierSlider.max / segments * [i];
+            console.log("start - > " + start);
+
+            var m = 1 / (end - start);
+            var b = (1 / 2) - (m * (end + start) / 2);
+            bezierParameter = m * this.value + b;
+            if(this.value > start && this.value < end) {
+                currentSegment = i;
+                break;
+            }
+        }
+
+        if (bezierParameter > 0 && bezierParameter < 1 && !isNaN(bezierParameter) && bezierParameter != null) {
+            var vectorList = [referencesPoints[3 * currentSegment], referencesPoints[1 + (3 * currentSegment)], referencesPoints[2 + (3 * currentSegment)], referencesPoints[3 + (3 * currentSegment)]];
+            var bezierPoint = getBezierCube(vectorList, bezierParameter);
+            xPosition = bezierPoint[0];
+            yPosition = bezierPoint[1];
+        }
+
+    }else{
+        bezierParameter = this.value/100;
+    }
     bezierLabelNode.nodeValue = bezierParameter.toFixed(2);
-    var vectorList = [referencesPoints[0],referencesPoints[1],referencesPoints[2],referencesPoints[3]];
-    var bezierPoint = getBezierCube(vectorList,bezierParameter);
-    console.log(bezierPoint);
-    xPosition = bezierPoint[0];
-    yPosition = bezierPoint[1];
+    console.log(bezierParameter);
+
+
 };
 
 function clearFields() {
