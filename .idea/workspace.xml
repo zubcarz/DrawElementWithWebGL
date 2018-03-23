@@ -20,8 +20,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/animation_curve/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="668" column="57" lean-forward="false" selection-start-line="668" selection-start-column="57" selection-end-line="668" selection-end-column="57" />
+            <state relative-caret-position="180">
+              <caret line="583" column="31" lean-forward="false" selection-start-line="583" selection-start-column="31" selection-end-line="583" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -40,8 +40,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/animation_curve/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="27" column="56" lean-forward="false" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
+            <state relative-caret-position="249">
+              <caret line="26" column="41" lean-forward="false" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -51,35 +51,35 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>numElements</find>
-      <find>bufferData</find>
-      <find>positions</find>
-      <find>draw</find>
-      <find>gl</find>
-      <find>gl =</find>
-      <find>db</find>
-      <find>contex</find>
-      <find>conte</find>
-      <find>onc</find>
-      <find>mous</find>
-      <find>AddPoint</find>
-      <find>handleMouseDown</find>
-      <find>act</find>
-      <find>canvas</find>
-      <find>dContext</find>
-      <find>initWebGL</find>
-      <find>resiz</find>
-      <find>canvasToWord</find>
-      <find>add</find>
-      <find>up ac</find>
       <find>namePoint</find>
       <find>pointList</find>
       <find>referencesPoints</find>
-      <find>getBezierCube</find>
       <find>maxPoints</find>
       <find>16</find>
       <find>1</find>
       <find>seg</find>
+      <find>isStartAnimatio</find>
+      <find>draw</find>
+      <find>deltaTime</find>
+      <find>drawScene</find>
+      <find>starta</find>
+      <find>iss</find>
+      <find>issta</find>
+      <find>bezi</find>
+      <find>iss</find>
+      <find>isp</find>
+      <find>segments</find>
+      <find>currentSegment</find>
+      <find>getBezierCube</find>
+      <find>clear</find>
+      <find>timea</find>
+      <find>timeanimation</find>
+      <find>isplayan</find>
+      <find>isPlayAnimation</find>
+      <find>tim</find>
+      <find>timeAnimation</find>
+      <find>ispla</find>
+      <find>clearPoints</find>
       <find>10</find>
     </findStrings>
     <replaceStrings>
@@ -234,12 +234,12 @@
       <workItem from="1519198533634" duration="1010000" />
       <workItem from="1520407918715" duration="1044000" />
       <workItem from="1520446233724" duration="621000" />
-      <workItem from="1521752574150" duration="22158000" />
+      <workItem from="1521752574150" duration="25673000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62175000" />
+    <option name="totallyTimeSpent" value="65690000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
@@ -425,6 +425,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/animation_curve/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="26" column="41" lean-forward="false" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/animation_curve/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -433,18 +441,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/animation_curve/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="27" column="56" lean-forward="false" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/animation_curve/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="668" column="57" lean-forward="false" selection-start-line="668" selection-start-column="57" selection-end-line="668" selection-end-column="57" />
+        <state relative-caret-position="180">
+          <caret line="583" column="31" lean-forward="false" selection-start-line="583" selection-start-column="31" selection-end-line="583" selection-end-column="31" />
           <folding />
         </state>
       </provider>

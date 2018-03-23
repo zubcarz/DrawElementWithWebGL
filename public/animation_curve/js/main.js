@@ -8,6 +8,13 @@ var options = {
 
 var pointList = new List('points', options);
 var maxPoints = 13;
+var timeAnimation = 2;// seconds
+var isPlayAnimation = false;
+var currentSegment = 0;
+var currentParameter = 0;
+var segments;
+var deltaTimeAnimation;
+var elapseTime = 0;
 
 var cubeRotation = 0.0;
 var scale = 0.25;
@@ -409,6 +416,36 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
 
     cubeRotation += deltaTime;
 
+    //
+    if (isPlayAnimation){
+        if(elapseTime > deltaTimeAnimation) {
+            if (currentParameter > 0 && currentParameter < 1 && !isNaN(currentParameter) && currentParameter != null) {
+                var vectorList = [referencesPoints[3 * currentSegment], referencesPoints[1 + (3 * currentSegment)], referencesPoints[2 + (3 * currentSegment)], referencesPoints[3 + (3 * currentSegment)]];
+                if (vectorList[0] != null && vectorList[1] != null && vectorList[2] != null && vectorList[3] != null) {
+                    var bezierPoint = getBezierCube(vectorList, currentParameter);
+                    xPosition = bezierPoint[0];
+                    yPosition = bezierPoint[1];
+                }
+            }
+            currentParameter += 0.01;
+
+            if (currentParameter > 1) {
+                currentParameter = 0;
+                currentSegment += 1;
+            }
+
+            if (currentSegment >= segments) {
+                currentSegment = 0;
+                currentParameter = 0;
+                isPlayAnimation = false;
+                console.log("end Animation");
+            }
+            elapseTime = 0;
+        }else {
+            elapseTime += deltaTime;
+        }
+    }
+
 }
 
 function start() {
@@ -544,8 +581,12 @@ function canvasToWord(posX, posY ) {
     }
 }
 
-function clearPoints() {
+function clearPoints(isReset) {
     dContext.clearRect(0, 0, canvas.width, canvas.height);
+    pointList.remove();
+    if(isReset) {
+        referencesPoints = [];
+    }
 }
 
 function AddPoint(x,y){
@@ -562,8 +603,7 @@ function AddPoint(x,y){
             console.log(referencesPoints.length);
         } else {
             referencesPoints.shift();
-            pointList.remove();
-            clearPoints();
+            clearPoints(false);
             referencesPoints.push([x, y, wordPosition.x, wordPosition.y]);
             for (var i = 0; i < referencesPoints.length; i++) {
                 drawPoint(referencesPoints[i][0], referencesPoints[i][1]);
@@ -578,6 +618,7 @@ function AddPoint(x,y){
 }
 
 function drawPoint(x,y){
+    segments = getCountSegment();
     dContext.fillStyle = "#d3d3d3"; // Red color
     dContext.beginPath();
     dContext.arc(x, y, pointSize, 0, Math.PI * 2, true);
@@ -586,36 +627,37 @@ function drawPoint(x,y){
 
 //parameter between 0 and 1
 function playAnimation() {
-    var pointOne = [-3.42, -0.6, zPosition];
-    var pointTwo = [-2.17, 1.45, zPosition];
-    var pointThird = [1.27, 1.65, zPosition];
-    var pointFour = [1.54, -0.57, zPosition];
-
-    var vectorList = [pointOne, pointTwo, pointThird, pointFour];
+    if(referencesPoints.length >= 4 && isPlayAnimation == false){
+        console.log("start animation");
+        var pointsTransition = segments *100;
+        deltaTimeAnimation = timeAnimation / pointsTransition;
+        console.log("Time Transition- >" + deltaTimeAnimation);
+        isPlayAnimation = true;
+    }
 }
 
 function getBezierCube(vectorList , parameter){
-    var  ax, bx, cx;
-    var  ay, by, cy;
-    var  parameterSquared, parameterCubed;
-    var result = [0,0];
+        var ax, bx, cx;
+        var ay, by, cy;
+        var parameterSquared, parameterCubed;
+        var result = [0, 0];
 
-    /* calculate the curve point at parameter value t */
-    parameterSquared = parameter * parameter;
-    parameterCubed = parameterSquared * parameter;
+        /* calculate the curve point at parameter value t */
+        parameterSquared = parameter * parameter;
+        parameterCubed = parameterSquared * parameter;
 
-    /* cálculo de los coeficientes polinomiales */
-    cx = 3.0 * (vectorList[1][2] - vectorList[0][2]);
-    bx = 3.0 * (vectorList[2][2] - vectorList[1][2]) - cx;
-    ax = vectorList[3][2] - vectorList[0][2] - cx - bx;
+        /* cálculo de los coeficientes polinomiales */
+        cx = 3.0 * (vectorList[1][2] - vectorList[0][2]);
+        bx = 3.0 * (vectorList[2][2] - vectorList[1][2]) - cx;
+        ax = vectorList[3][2] - vectorList[0][2] - cx - bx;
 
-    cy = 3.0 * (vectorList[1][3] - vectorList[0][3]);
-    by = 3.0 * (vectorList[2][3] - vectorList[1][3]) - cy;
-    ay = vectorList[3][3] - vectorList[0][3] - cy - by;
+        cy = 3.0 * (vectorList[1][3] - vectorList[0][3]);
+        by = 3.0 * (vectorList[2][3] - vectorList[1][3]) - cy;
+        ay = vectorList[3][3] - vectorList[0][3] - cy - by;
 
-    result[0] = (ax * parameterCubed) + (bx * parameterSquared) + (cx * parameter) + vectorList[0][2];
-    result[1] = (ay * parameterCubed) + (by * parameterSquared) + (cy * parameter) + vectorList[0][3];
-    return result;
+        result[0] = (ax * parameterCubed) + (bx * parameterSquared) + (cx * parameter) + vectorList[0][2];
+        result[1] = (ay * parameterCubed) + (by * parameterSquared) + (cy * parameter) + vectorList[0][3];
+        return result;
 }
 
 function updateCanvasSize() {
@@ -639,16 +681,17 @@ zSlider.oninput = function() {
     yNode.nodeValue = wordPosition.y.toFixed(2);
 };
 
-bezierSlider.oninput = function() {
+function getCountSegment(){
     var segments;
     if( referencesPoints.length <= 4){
         segments = 1;
     }else{
         segments =Math.floor( (referencesPoints.length - 4) /3) + 1;
     }
+    return segments;
+}
 
-    console.log("Segments - > " + segments);
-
+bezierSlider.oninput = function() {
     if(segments >= 1) {
     var currentSegment = 0;
 
