@@ -2,11 +2,20 @@ body {
     margin: 0;
     background-color: white;
 }
-canvas {
+#canvas {
     display: block;  /* prevents scrollbar */
     width: 100vw;
     height: 100vh;
 }
+
+#canvas2D {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
 #overlay {
     position: absolute;
     left: 10px;

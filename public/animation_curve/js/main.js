@@ -2,17 +2,18 @@
 
 var gl;
 var dContext;
-var canvasData;
 
 var cubeRotation = 0.0;
 var scale = 0.25;
 var isMouseDown = false;
+var pointSize = 2;
 
 var xPosition = 0.0;
 var yPosition = 0.0;
 var zPosition = 6;
 var angleView = 45;
 var bezierParameter = 0.0;
+var referencesPoints  = [];
 
 //UI
 var xLabel = document.getElementById("x_position");
@@ -104,6 +105,7 @@ function loadShader(gl, type, source) {
 function initWebGL(canvas) {
     gl = null;
     try {
+        dContext = document.getElementById("canvas2D").getContext("2d");
         gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
     }
     catch(e) {}
@@ -405,9 +407,10 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
 
 function start() {
     var canvas = document.getElementById("canvas");
+    var canvas2D = document.getElementById("canvas2D");
 
     //Canvas events
-    canvas.onmousedown = handleMouseDown;
+    canvas2D.onmousedown = handleMouseDown;
     document.onmouseup = handleMouseUp;
     document.onmousemove = handleMouseMove;
 
@@ -448,6 +451,7 @@ function start() {
     function render(now) {
         now *= 0.001;  // convert to seconds
         resize(gl);
+        resize(dContext);
         updateCanvasSize();
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
         gl.clear(gl.COLOR_BUFFER_BIT);
@@ -472,9 +476,16 @@ function scaleArray(array, scale){
 
 function handleMouseDown(event) {
     isMouseDown = true;
+    var rect = canvas.getBoundingClientRect();
+    var x = event.clientX - rect.left;
+    var y = event.clientY - rect.top;
+    console.log(x);
+    console.log(y);
+    AddPoint(x, y);
 }
 
 function handleMouseUp(event) {
+    console.log("up action");
     isMouseDown = false;
 }
 
@@ -482,7 +493,9 @@ function handleMouseMove(event) {
     if (!isMouseDown ) {
         return;
     }
-    translateElement(event.clientX, event.clientY);
+    var wordPosition = canvasToWord(event.clientX, event.clientY);
+    xNode.nodeValue = wordPosition.x.toFixed(2);
+    yNode.nodeValue = wordPosition.y.toFixed(2);
 }
 
 function resize(gl) {
@@ -500,11 +513,14 @@ function resize(gl) {
         gl.canvas.height = displayHeight;
 
         // Center translate
-        translateElement(gl.canvas.width / 2, gl.canvas.height / 2);
+        var wordPosition = canvasToWord(gl.canvas.width / 2, gl.canvas.height / 2);
+        xNode.nodeValue = wordPosition.x.toFixed(2);
+        yNode.nodeValue = wordPosition.y.toFixed(2);
+
     }
 }
 
-function translateElement(posX, posY ) {
+function canvasToWord(posX, posY ) {
 
     if( (posX > 0  && posX < gl.canvas.width) && (posY>0  && posY  < gl.canvas.height)){
 
@@ -514,21 +530,36 @@ function translateElement(posX, posY ) {
         var newXPosition =  (2  * (posX / gl.canvas.width ) - 1)  * correctionX;
         var newYPosition =  (2 * (-posY / gl.canvas.height) + 1) * correctionY;
 
-        /*xPosition = newXPosition;
-        yPosition = newYPosition;*/
+        var result = {
+            x : newXPosition,
+            y : newYPosition
+        };
 
-        xNode.nodeValue = newXPosition.toFixed(2);
-        yNode.nodeValue = newYPosition.toFixed(2);
+        return result;
     }
 }
 
 function clearPoints() {
-
+    dContext.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function AddPoint(){
+function AddPoint(x,y){
+    dContext.fillStyle = "#d3d3d3"; // Red color
+    dContext.beginPath();
+    dContext.arc(x, y, pointSize, 0, Math.PI * 2, true);
+    dContext.fill();
 
-}
+    var wordPosition = canvasToWord(x,y);
+    if(referencesPoints.length < 16) {
+        referencesPoints.push([wordPosition.x, wordPosition.y]);
+        console.log(referencesPoints.length);
+    }else{
+        referencesPoints.shift();
+        referencesPoints.push([wordPosition.x, wordPosition.y]);
+        console.log(referencesPoints.length);
+    }
+}   
+
 //parameter between 0 and 1
 function playAnimation() {
     var pointOne = [-3.42, -0.6, zPosition];
@@ -537,17 +568,6 @@ function playAnimation() {
     var pointFour = [1.54, -0.57, zPosition];
 
     var vectorList = [pointOne, pointTwo, pointThird, pointFour];
-
-
-}
-
-function drawPixel (x, y, r, g, b, a) {
-    var index = (x + y * canvasWidth) * 4;
-
-    canvasData.data[index + 0] = r;
-    canvasData.data[index + 1] = g;
-    canvasData.data[index + 2] = b;
-    canvasData.data[index + 3] = a;
 }
 
 function getBezierCube(vectorList , parameter){
@@ -582,13 +602,17 @@ function updateCanvasSize() {
 fSlider.oninput = function() {
     angleView = this.value;
     fieldOfViewLabelNode.nodeValue = this.value;
-    translateElement(gl.canvas.width / 2, gl.canvas.height / 2);
+    var wordPosition = canvasToWord(gl.canvas.width / 2, gl.canvas.height / 2);
+    xNode.nodeValue = wordPosition.x.toFixed(2);
+    yNode.nodeValue = wordPosition.y.toFixed(2);
 };
 
 zSlider.oninput = function() {
     zPosition = this.value;
     zLabelNode.nodeValue = this.value;
-    translateElement(gl.canvas.width / 2, gl.canvas.height / 2);
+    var wordPosition = canvasToWord(gl.canvas.width / 2, gl.canvas.height / 2);
+    xNode.nodeValue = wordPosition.x.toFixed(2);
+    yNode.nodeValue = wordPosition.y.toFixed(2);
 };
 
 bezierSlider.oninput = function() {
