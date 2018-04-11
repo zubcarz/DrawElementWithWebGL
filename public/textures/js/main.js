@@ -118,12 +118,32 @@ function main() {
     var dataImage5 = preload(gl,"img/pared.jpg");
     var dataImage6 = preload(gl,"img/sony.png");
 
-    loadTexture(gl, dataImage1);
-    loadTexture(gl, dataImage2);
-    loadTexture(gl, dataImage3);
-    loadTexture(gl, dataImage4);
-    loadTexture(gl, dataImage5);
-    loadTexture(gl, dataImage6);
+    //Load Texture
+    dataImage1.image.addEventListener('load', function() {
+        loadTexture(gl, dataImage1);
+    });
+
+    dataImage2.image.addEventListener('load', function() {
+        loadTexture(gl, dataImage2);
+    });
+
+    dataImage3.image.addEventListener('load', function() {
+        loadTexture(gl, dataImage3);
+    });
+
+    dataImage4.image.addEventListener('load', function() {
+        loadTexture(gl, dataImage4);
+    });
+
+    dataImage5.image.addEventListener('load', function() {
+        loadTexture(gl, dataImage5);
+    });
+
+    dataImage6.image.addEventListener('load', function() {
+        loadTexture(gl, dataImage6);
+    });
+
+
     //Canvas events
     document.onmousemove = handleMouseMove;
 
