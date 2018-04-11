@@ -113,9 +113,17 @@ function main() {
 
     var dataImage1 = preload(gl,"img/coca.png");
     var dataImage2 = preload(gl,"img/noodles.jpg");
+    var dataImage3 = preload(gl,"img/hei.png");
+    var dataImage4 = preload(gl,"img/piedra.jpg");
+    var dataImage5 = preload(gl,"img/pared.jpg");
+    var dataImage6 = preload(gl,"img/sony.png");
 
     loadTexture(gl, dataImage1);
-
+    loadTexture(gl, dataImage2);
+    loadTexture(gl, dataImage3);
+    loadTexture(gl, dataImage4);
+    loadTexture(gl, dataImage5);
+    loadTexture(gl, dataImage6);
     //Canvas events
     document.onmousemove = handleMouseMove;
 
@@ -139,7 +147,7 @@ function main() {
 
     var sphereBufferInfo = createFlattenedVertices(gl, primitives.createSphereVertices(1.5, 16, 16));
     var cubeBufferInfo = createFlattenedVertices(gl,primitives.createCubeVertices(4));
-    var coneBufferInfo   = createFlattenedVertices(gl, primitives.createTruncatedConeVertices(1.5, 0, 3, 12, 1, true, false));
+    var coneBufferInfo   = createFlattenedVertices(gl, primitives.createTruncatedConeVertices(1.5, 0, 3, 60, 1, true, false));
     var cylinderBufferInfo   = createFlattenedVertices(gl, primitives.createTruncatedConeVertices(1.2, 1.2, 3, 12, 1, true, true));
 
     var barBufferInfo = createFlattenedVertices(gl, primitives.createCubeVertices(1));  
@@ -220,9 +228,9 @@ function main() {
     nB1_1.localMatrix = m4.scaling(1, 1, 1);
     nB1_1.drawInfo = {
         uniforms: {
-            u_colorOffset: red,
+            u_colorOffset: white,
             u_colorMult:  [0 , 0, 0, 1],
-            u_texture: dataImage2.texture
+            u_texture: dataImage3.texture
         },
         programInfo: programInfo,
         bufferInfo: cubeBufferInfo
@@ -233,8 +241,9 @@ function main() {
     nB1_2.localMatrix = m4.translation(distanceToCenter, 0, -distanceAxis);
     nB1_2.drawInfo = {
         uniforms: {
-            u_colorOffset: purple,
-            u_colorMult:  [0.2 , 0.2, 0.2, 1]
+            u_colorOffset: white,
+            u_colorMult:  [0.2 , 0.2, 0.2, 1],
+            u_texture: dataImage4.texture
         },
         programInfo: programInfo,
         bufferInfo: coneBufferInfo
@@ -259,8 +268,9 @@ function main() {
     nB1_3.localMatrix = m4.translation(-distanceToCenter, 0, -distanceAxis);
     nB1_3.drawInfo = {
         uniforms: {
-            u_colorOffset: yellow,
-            u_colorMult:  [0 , 0, 0, 1]
+            u_colorOffset: white,
+            u_colorMult:  [0 , 0, 0, 1],
+            u_texture: dataImage4.texture
         },
         programInfo: programInfo,
         bufferInfo: coneBufferInfo
@@ -285,8 +295,9 @@ function main() {
     nB1_4.localMatrix = m4.translation(0, distanceToCenter , -distanceAxis);
     nB1_4.drawInfo = {
         uniforms: {
-            u_colorOffset: red,
-            u_colorMult:  [0 , 0, 0, 1]
+            u_colorOffset: white,
+            u_colorMult:  [0 , 0, 0, 1],
+            u_texture: dataImage4.texture
         },
         programInfo: programInfo,
         bufferInfo: coneBufferInfo
@@ -310,8 +321,9 @@ function main() {
     nB1_5.localMatrix = m4.translation(0, -distanceToCenter, -distanceAxis);
     nB1_5.drawInfo = {
         uniforms: {
-            u_colorOffset: orange,
+            u_colorOffset: white,
             u_colorMult:  [0 , 0, 0, 1],
+            u_texture: dataImage4.texture
         },
         programInfo: programInfo,
         bufferInfo: coneBufferInfo,
@@ -334,8 +346,9 @@ function main() {
     nB1_2_1.localMatrix = m4.scaling(1, 1, 1);
     nB1_2_1.drawInfo = {
         uniforms: {
-            u_colorOffset: grey,  // gray
+            u_colorOffset: white,  // gray
             u_colorMult:   [0.1, 0.1, 0.1, 1],
+            u_texture: dataImage5.texture
         },
         programInfo: programInfo,
         bufferInfo: cylinderBufferInfo,
@@ -359,8 +372,9 @@ function main() {
     nB1_2_2.localMatrix = m4.translation(distanceToCenter/2, 0, -distanceToCenter/2);
     nB1_2_2.drawInfo = {
         uniforms: {
-            u_colorOffset: red,  // gray
+            u_colorOffset: white,  // gray
             u_colorMult:   [0.1, 0.1, 0.1, 1],
+            u_texture: dataImage6.texture
         },
         programInfo: programInfo,
         bufferInfo: sphereBufferInfo,
@@ -372,8 +386,8 @@ function main() {
     barB3_2.localMatrix = m4.multiply( scaleB3_2, translationB3_2);
     barB3_2.drawInfo = {
         uniforms: {
-            u_colorOffset: pureBlack,
-            u_colorMult:   [0, 0, 0, 1]
+            u_colorOffset: white,
+            u_colorMult:   [0, 0, 0, 1],
         },
         programInfo: programInfo,
         bufferInfo: barBufferInfo
@@ -384,8 +398,9 @@ function main() {
     nB1_2_3.localMatrix = m4.translation(-distanceToCenter/2, 0, -distanceToCenter/2);
     nB1_2_3.drawInfo = {
         uniforms: {
-            u_colorOffset: red,  // gray
+            u_colorOffset: white,  // gray
             u_colorMult:   [0.1, 0.1, 0.1, 1],
+            u_texture: dataImage6.texture
         },
         programInfo: programInfo,
         bufferInfo: sphereBufferInfo,
@@ -396,8 +411,9 @@ function main() {
     nB1_3_1.localMatrix = m4.scaling(1, 1, 1);
     nB1_3_1.drawInfo = {
         uniforms: {
-            u_colorOffset: grey,  // gray
+            u_colorOffset: white,  // gray
             u_colorMult:   [0.1, 0.1, 0.1, 1],
+            u_texture: dataImage5.texture
         },
         programInfo: programInfo,
         bufferInfo: cylinderBufferInfo,
@@ -408,8 +424,9 @@ function main() {
     nB1_3_2.localMatrix = m4.translation(distanceToCenter/2, 0, -distanceToCenter/2);
     nB1_3_2.drawInfo = {
         uniforms: {
-            u_colorOffset: red,  // gray
+            u_colorOffset: white,  // gray
             u_colorMult:   [0.1, 0.1, 0.1, 1],
+            u_texture: dataImage6.texture
         },
         programInfo: programInfo,
         bufferInfo: sphereBufferInfo,
@@ -420,8 +437,9 @@ function main() {
     nB1_3_3.localMatrix = m4.translation(-distanceToCenter/2, 0, -distanceToCenter/2);
     nB1_3_3.drawInfo = {
         uniforms: {
-            u_colorOffset: red,  // gray
+            u_colorOffset: white,  // gray
             u_colorMult:   [0.1, 0.1, 0.1, 1],
+            u_texture: dataImage6.texture
         },
         programInfo: programInfo,
         bufferInfo: sphereBufferInfo,
