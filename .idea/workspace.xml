@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="feb56567-e306-49b2-9fea-6e0d4a953886" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/textures/css/styles.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/textures/img/coca.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/textures/img/noodles.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/textures/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/textures/js/clockPrimitive.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/textures/js/gl-matrix.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/textures/js/loadImage.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/textures/js/main.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/public/animation_curve/index.html" afterPath="$PROJECT_DIR$/public/animation_curve/index.html" />
-      <change beforePath="$PROJECT_DIR$/public/animation_curve/js/main.js" afterPath="$PROJECT_DIR$/public/animation_curve/js/main.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,30 +25,40 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/animation_curve/js/main.js">
+        <entry file="file://$PROJECT_DIR$/public/textures/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="640" column="33" lean-forward="false" selection-start-line="640" selection-start-column="33" selection-end-line="640" selection-end-column="33" />
+            <state relative-caret-position="283">
+              <caret line="667" column="23" lean-forward="false" selection-start-line="667" selection-start-column="15" selection-end-line="667" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="styles.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/animation_curve/css/styles.css">
+      <file leaf-file-name="loadImage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/textures/js/loadImage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="63" column="23" lean-forward="false" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="23" />
+            <state relative-caret-position="575">
+              <caret line="25" column="4" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/animation_curve/index.html">
+        <entry file="file://$PROJECT_DIR$/public/textures/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="31" column="48" lean-forward="false" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
+            <state relative-caret-position="252">
+              <caret line="53" column="87" lean-forward="false" selection-start-line="53" selection-start-column="78" selection-end-line="53" selection-end-column="87" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="styles.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/textures/css/styles.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -50,44 +66,52 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>drawScene</find>
-      <find>starta</find>
-      <find>iss</find>
-      <find>issta</find>
-      <find>bezi</find>
-      <find>iss</find>
-      <find>isp</find>
-      <find>segments</find>
-      <find>currentSegment</find>
-      <find>getBezierCube</find>
-      <find>clear</find>
-      <find>timea</find>
-      <find>timeanimation</find>
-      <find>isplayan</find>
-      <find>tim</find>
-      <find>clearPoints</find>
-      <find>n</find>
-      <find>bezierSlider</find>
-      <find>bezierLabel</find>
-      <find>timeAnimation</find>
-      <find>bezierPointsLabel</find>
-      <find>timeAnimationNode</find>
-      <find>bezierPoints</find>
-      <find>10</find>
-      <find>playa</find>
-      <find>isPlayAnimation</find>
-      <find>stopAnimation</find>
-      <find>ispla</find>
-      <find>addpoin</find>
       <find>referencesPoints</find>
+      <find>isPla</find>
+      <find>sphereBufferInfo</find>
+      <find>rotat</find>
+      <find>rotation</find>
+      <find>coneBufferIn</find>
+      <find>cylinderBufferInfo</find>
+      <find>cone</find>
+      <find>coneBufferInfo</find>
+      <find>localMatrix</find>
+      <find>webglUtils</find>
+      <find>color</find>
+      <find>u_color</find>
+      <find>colo</find>
+      <find>position</find>
+      <find>cube</find>
+      <find>cloc</find>
+      <find>u_colorOffset</find>
+      <find>noo</find>
+      <find>u_texture</find>
+      <find>coca</find>
+      <find>resiz</find>
+      <find>black</find>
+      <find>blac</find>
+      <find>lodim</find>
+      <find>load</find>
+      <find>v_texcoord</find>
+      <find>u_col</find>
+      <find>u_</find>
+      <find>drawInfo</find>
     </findStrings>
     <replaceStrings>
       <replace>js/</replace>
       <replace>./js/</replace>
       <replace>1.0</replace>
       <replace>0.5</replace>
+      <replace>pureBlack</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -106,6 +130,10 @@
         <option value="$PROJECT_DIR$/public/animation_curve/index.html" />
         <option value="$PROJECT_DIR$/public/animation_curve/css/styles.css" />
         <option value="$PROJECT_DIR$/public/animation_curve/js/main.js" />
+        <option value="$PROJECT_DIR$/public/textures/js/clockPrimitive.js" />
+        <option value="$PROJECT_DIR$/public/textures/index.html" />
+        <option value="$PROJECT_DIR$/public/textures/js/loadImage.js" />
+        <option value="$PROJECT_DIR$/public/textures/js/main.js" />
       </list>
     </option>
   </component>
@@ -156,33 +184,40 @@
               <item name="DrawinWebGl" type="b2602c69:ProjectViewProjectNode" />
               <item name="DrawinWebGl" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="animation_curve" type="462c0819:PsiDirectoryNode" />
+              <item name="draw" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DrawinWebGl" type="b2602c69:ProjectViewProjectNode" />
               <item name="DrawinWebGl" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="animation_curve" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DrawinWebGl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DrawinWebGl" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="animation_curve" type="462c0819:PsiDirectoryNode" />
+              <item name="draw" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DrawinWebGl" type="b2602c69:ProjectViewProjectNode" />
               <item name="DrawinWebGl" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="movil" type="462c0819:PsiDirectoryNode" />
+              <item name="textures" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DrawinWebGl" type="b2602c69:ProjectViewProjectNode" />
               <item name="DrawinWebGl" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="movil" type="462c0819:PsiDirectoryNode" />
+              <item name="textures" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DrawinWebGl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DrawinWebGl" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="textures" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DrawinWebGl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DrawinWebGl" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="textures" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -198,6 +233,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Movil" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Documents\Development\web\DrawinWebGl\public\textures\img" />
+      <recent name="D:\Documents\Development\web\DrawinWebGl\public" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -235,18 +276,20 @@
       <workItem from="1519198533634" duration="1010000" />
       <workItem from="1520407918715" duration="1044000" />
       <workItem from="1520446233724" duration="621000" />
-      <workItem from="1521752574150" duration="28297000" />
+      <workItem from="1521752574150" duration="29960000" />
+      <workItem from="1522107036909" duration="129000" />
+      <workItem from="1523416886024" duration="13250000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68314000" />
+    <option name="totallyTimeSpent" value="83356000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25054467" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25054467" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -295,24 +338,12 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="6" lean-forward="true" selection-start-line="51" selection-start-column="6" selection-end-line="51" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/gl-matrix/common.js" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_toji-gl-matrix-v2.4.0-6-g7fc31d5.zip/toji-gl-matrix-7fc31d5/dist/gl-matrix.js" />
-    <entry file="file://$PROJECT_DIR$/js/gl-matrix.js" />
-    <entry file="file://$PROJECT_DIR$/css/styles.css" />
     <entry file="file://$PROJECT_DIR$/index.html" />
     <entry file="file://$PROJECT_DIR$/js/main.js" />
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
           <caret line="34" column="1" lean-forward="false" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -402,7 +433,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="718">
           <caret line="34" column="1" lean-forward="false" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -417,7 +447,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -425,15 +454,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="649">
           <caret line="33" column="4" lean-forward="false" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/draw/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="508" column="29" lean-forward="false" selection-start-line="508" selection-start-column="28" selection-end-line="508" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -445,26 +465,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/animation_curve/index.html">
+    <entry file="file://$PROJECT_DIR$/public/animation_curve/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="31" column="48" lean-forward="false" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
+        <state relative-caret-position="5221">
+          <caret line="287" column="49" lean-forward="true" selection-start-line="287" selection-start-column="49" selection-end-line="287" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/animation_curve/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
+        <state relative-caret-position="511">
           <caret line="63" column="23" lean-forward="false" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/animation_curve/js/main.js">
+    <entry file="file://$PROJECT_DIR$/public/animation_curve/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="640" column="33" lean-forward="false" selection-start-line="640" selection-start-column="33" selection-end-line="640" selection-end-column="33" />
+        <state relative-caret-position="120">
+          <caret line="31" column="48" lean-forward="false" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/draw/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2640">
+          <caret line="259" column="3" lean-forward="true" selection-start-line="259" selection-start-column="3" selection-end-line="279" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/textures/js/clockPrimitive.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="718">
+          <caret line="115" column="14" lean-forward="false" selection-start-line="115" selection-start-column="14" selection-end-line="115" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/textures/css/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/textures/js/loadImage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="25" column="4" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/textures/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="53" column="87" lean-forward="false" selection-start-line="53" selection-start-column="78" selection-end-line="53" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/textures/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="667" column="23" lean-forward="false" selection-start-line="667" selection-start-column="15" selection-end-line="667" selection-end-column="23" />
           <folding />
         </state>
       </provider>
